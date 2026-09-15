@@ -1,0 +1,132 @@
+/*
+ * Overlay de branding evenementiel (ACME) pour l'ecran d'accueil (#step-1).
+ *
+ * Aucune valeur de branding en dur ici : chaque regle consomme une custom
+ * property CSS (--brand-*), posee par branding/apply-branding.js. Tant que
+ * ce script n'a rien pose sur <html>, ce fichier est un no-op visuel :
+ * aucun changement de rendu par rapport a css/multi.css (soit via le
+ * fallback local de var(), soit via les defauts ci-dessous, identiques au
+ * rendu HexGL d'origine et toujours ecrases par les custom properties
+ * posees en style inline par le JS, qui priment sur ce bloc :root).
+ *
+ * Les elements de branding ajoutes (#brand-logo-panel, #brand-name,
+ * #brand-welcome) sont caches par defaut et ne deviennent visibles que
+ * lorsque apply-branding.js leur ajoute la classe .is-visible, apres avoir
+ * rempli leur contenu avec succes (conception fail-open : cf. design.md).
+ */
+
+:root {
+  --brand-color-accent: #f66439;
+  --brand-color-text-on-dark: #333;
+}
+
+#global {
+  background: var(--brand-color-background, white);
+}
+
+/*
+ * Le logo HexGL d'origine (#title) n'est masque qu'une fois le logo ACME
+ * charge avec succes (classe posee par branding/apply-branding.js) : les
+ * deux logos ne doivent jamais s'afficher superposes, et en cas d'echec de
+ * chargement du logo ACME l'original reste visible (fail-open).
+ */
+#title.is-branded {
+  display: none;
+}
+
+#menu {
+  color: var(--brand-color-text, #4190bb);
+}
+
+#menu div:hover,
+#start {
+  color: var(--brand-color-accent);
+}
+
+/*
+ * Meme boite que #title (position, haut/bas) pour que le branding ACME
+ * occupe exactement le meme espace visuel que l'ancien logo HexGL qu'il
+ * remplace. Etre positionne (absolute + z-index) est aussi ce qui garantit
+ * que le logo et les textes se peignent au-dessus de #global (lui-meme
+ * positionne avec un fond opaque) : un element en flux normal (non
+ * positionne) se peint toujours sous n'importe quel element positionne,
+ * meme a z-index:0 - d'ou #brand-header comme conteneur positionne unique
+ * pour tout le branding.
+ */
+#brand-header {
+  position: absolute;
+  top: 5%;
+  right: 0;
+  bottom: 5%;
+  left: 0;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2em;
+}
+
+/*
+ * #menucontainer est position:absolute dans css/multi.css (pense pour
+ * flotter seul en bas de #step-1). Repris ici en position statique pour
+ * qu'il rejoigne le flux de #brand-header : un element positionne est
+ * ignore par l'algorithme flexbox (sorti du flux), ce qui le "figeait"
+ * independamment du logo/texte au lieu d'etre espace avec eux via gap.
+ */
+#brand-header #menucontainer {
+  position: static;
+}
+
+/* Cache par defaut ; rendu visible individuellement via .is-visible (cf. apply-branding.js) */
+#brand-logo-panel,
+#brand-name,
+#brand-welcome {
+  display: none;
+}
+
+#brand-logo-panel.is-visible,
+#brand-name.is-visible,
+#brand-welcome.is-visible {
+  display: block;
+}
+
+#brand-logo-panel {
+  padding: 0.75em 1.25em;
+  background: var(--brand-color-surface, transparent);
+  border-radius: 8px;
+  /* meme animation de flottement que l'ancien #title (keyframes "anim" definies dans css/multi.css, reutilisees ici) */
+  -webkit-animation: anim 3s ease-in-out infinite;
+  -moz-animation: anim 3s ease-in-out infinite;
+  -o-animation: anim 3s ease-in-out infinite;
+  animation: anim 3s ease-in-out infinite;
+}
+
+/*
+ * Unites vh/vw plutot qu'un pourcentage du parent : #brand-header n'a pas
+ * de 'height' explicite (seulement top/bottom), ce qui rend la resolution
+ * d'un max-height en % peu fiable. vh/vw donnent une taille bornee et
+ * previsible, du meme ordre de grandeur que l'ancien logo (~45% de la
+ * hauteur d'ecran).
+ */
+#brand-logo {
+  display: block;
+  max-height: 17.5vh;
+  max-width: 25vw;
+  width: auto;
+  height: auto;
+  margin: 0 auto;
+}
+
+#brand-name {
+  font-family: 'BebasNeueRegular', arial, sans-serif;
+  text-transform: uppercase;
+  font-size: 2.8em;
+  color: var(--brand-color-text-on-dark);
+}
+
+#brand-welcome {
+  font-family: 'BebasNeueRegular', arial, sans-serif;
+  font-size: 2em;
+  color: var(--brand-color-text-on-dark);
+}

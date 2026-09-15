@@ -1,0 +1,10 @@
+{
+  "name": "hexgl-regression-tests",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Tests de non-regression (outils natifs Node) proteant les comportements existants de HexGL avant refactoring.",
+  "scripts": {
+    "start":"npx --yes http-server .",
+    "test": "node --test test/*.test.js"
+  }
+}
