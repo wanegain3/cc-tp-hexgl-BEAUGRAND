@@ -15,6 +15,7 @@
     <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
     <link rel="stylesheet" href="css/multi.css" type="text/css" charset="utf-8">
     <link rel="stylesheet" href="css/fonts.css" type="text/css" charset="utf-8">
+    <link rel="stylesheet" href="css/branding-acme.css" type="text/css" charset="utf-8">
     <style>
       body {
         padding:0;
@@ -47,14 +48,21 @@
       <div id="global"></div>
       <div id="title">
       </div>
-      <div id="menucontainer">
-        <div id="menu">
-          <div id="start">Start</div>
-          <div id="s-controlType">Controls: Keyboard</div>
-          <div id="s-quality">Quality: High</div>
-          <div id="s-hud">HUD: On</div>
-          <div id="s-godmode" style="display: none">Godmode: Off</div>
-          <div id="s-credits">Credits</div>
+      <div id="brand-header">
+        <div id="brand-logo-panel">
+          <img id="brand-logo" src="" alt="">
+        </div>
+        <div id="brand-name"></div>
+        <div id="brand-welcome"></div>
+        <div id="menucontainer">
+          <div id="menu">
+            <div id="start">Start</div>
+            <div id="s-controlType">Controls: Keyboard</div>
+            <div id="s-quality">Quality: High</div>
+            <div id="s-hud">HUD: On</div>
+            <div id="s-godmode" style="display: none">Godmode: Off</div>
+            <div id="s-credits">Credits</div>
+          </div>
         </div>
       </div>
     </div>
@@ -84,6 +92,11 @@
     </div>
 
     <div id="leapinfo" style="display: none"></div>
+
+    <!-- Branding: sans dependance sur les libs/bkcore ci-dessous, charge en premier pour eviter un flash de l'ecran d'origine au demarrage -->
+    <script src="branding/config.js"></script>
+    <script src="branding/validateBranding.js"></script>
+    <script src="branding/apply-branding.js"></script>
 
     <script src="libs/leap-0.4.1.min.js"></script>
     <script src="libs/Three.dev.js"></script>
