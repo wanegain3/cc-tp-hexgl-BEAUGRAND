@@ -8,9 +8,11 @@
  * Palette de la charte ACME : #08090D, #7628FF, #315BFF, #00C4E8, #FFFFFF, #E6E8EE.
  */
 
-/* Fond : noir profond de la charte (remplace bg.jpg et son animation) */
+/* Fond : dégradé du noir profond de la charte vers un voile violet / bleu électrique translucide
+   (remplace bg.jpg et son animation). Le haut reste noir #08090D pour garder le contraste du nom (cyan) et du message (blanc). */
 #global {
-  background: #08090D;
+  background-color: #08090D;
+  background-image: linear-gradient(to bottom, #08090D 0%, #08090D 30%, rgba(118,40,255,0.35) 70%, rgba(49,91,255,0.4) 100%);
   -webkit-animation: none;
   -moz-animation: none;
   -o-animation: none;

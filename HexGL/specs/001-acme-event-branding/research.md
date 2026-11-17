@@ -27,7 +27,7 @@ Aucun marqueur `NEEDS CLARIFICATION` ne subsiste dans le Technical Context. Cett
 - **Alternatives considered**: supprimer `<div id="title">` de `index.html` (suppression moins réversible, et `#title` pourrait servir à du CSS existant) ; remplacer `title.png` (détruit l'asset d'origine).
 
 ### D4 — Fond sombre
-- **Decision**: `#global { background: #08090D; animation: none; }` (neutralise `bg.jpg`, flou clair incompatible avec FR-004). Le `body` reste blanc dans `multi.css` mais est entièrement recouvert par `#global` (position absolue plein écran) à l'écran d'accueil.
+- **Decision**: `#global { background-color: #08090D; background-image: linear-gradient(...); animation: none; }` (dégradé noir -> violet/bleu translucide, demande du 2026-11-17) (neutralise `bg.jpg`, flou clair incompatible avec FR-004). Le `body` reste blanc dans `multi.css` mais est entièrement recouvert par `#global` (position absolue plein écran) à l'écran d'accueil.
 - **Rationale**: FR-004 impose le noir profond #08090D ; l'animation de flottement d'un fond uni est sans objet.
 - **Alternatives considered**: superposer un voile sombre sur `bg.jpg` (couleurs mélangées, hors palette) ; dégradé violet → bleu en fond (la charte réserve le dégradé aux accents).
 

@@ -9,7 +9,7 @@ Source : `formation/identite/charte_graphique_acme.pdf` et `formation/identite/l
 | Champ | Valeur | Règle de validation |
 |---|---|---|
 | Logo | `formation/identite/logo.png` (fond blanc opaque, texte bleu nuit) | Affiché sans déformation (`width:auto` ou `height:auto`, rapport d'aspect d'origine), sans recoloration, ombre, contour ni filtre ; sur surface claire avec marge intérieure |
-| Fond principal | `#08090D` | Seul fond de l'écran d'accueil |
+| Fond principal | `#08090D` en haut, dégradé vers violet/bleu électrique translucides en bas | Seul fond de l'écran d'accueil |
 | Violet | `#7628FF` | Accent autorisé |
 | Bleu électrique | `#315BFF` | Accent autorisé |
 | Cyan | `#00C4E8` | Accent autorisé (liseré, souligné ; pas de texte courant sur violet) |
