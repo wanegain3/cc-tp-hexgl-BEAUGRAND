@@ -16,6 +16,7 @@ Site statique (HTML/JS, Three.js ancien, aucun build). Architecture détaillée 
 - `formation/tests/captures/1-menu.png` (écran d'accueil) et `2-course.png` (jeu en cours, qualité LOW, HUD visible).
 - Régénération (depuis `HexGL/`) : `node .claude/skills/run-hexgl/driver.mjs play formation/tests/captures`
 - La capture de course contient un chrono et une vitesse variables : à comparer visuellement, pas pixel à pixel.
+- `1-menu.png` montre l'écran d'accueil HexGL d'origine ; depuis la personnalisation ACME (`specs/001-acme-event-branding/`, `css/acme.css`), l'accueil a changé volontairement : ne pas régénérer ni comparer cette capture. Elle ne sert plus qu'à contrôler les options du menu et le parcours. Les captures ACME sont dans `specs/001-acme-event-branding/captures/`.
 
 ## Lancer le jeu
 

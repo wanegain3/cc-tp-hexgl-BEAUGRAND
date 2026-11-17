@@ -24,7 +24,7 @@ Document descriptif, établi par lecture du code et par exécution du jeu en nav
 ## 2. Flux principal de lancement
 
 1. `index.html` charge les scripts ; `bkcore.Audio.init()` s'exécute dès le chargement de `Audio.js`.
-2. `launch.js` lit les paramètres d'URL via `bkcore.Utils.getURLParameter` : `controlType`, `quality`, `hud`, `godmode` (valeurs par défaut : clavier ou tactile selon `isTouchDevice()`, qualité 3, HUD 1, godmode 0). Chaque ligne du menu (`#s-controlType`, `#s-quality`, `#s-hud`, `#s-godmode`) cycle sur ses valeurs au clic. `#s-godmode` est masqué (`display:none`) dans `index.html`.
+2. `launch.js` lit les paramètres d'URL via `bkcore.Utils.getURLParameter` : `controlType`, `quality`, `hud`, `godmode` (valeurs par défaut : clavier ou tactile selon `isTouchDevice()`, qualité 3, HUD 1, godmode 0). Chaque ligne du menu (`#s-controlType`, `#s-quality`, `#s-hud`, `#s-godmode`) cycle sur ses valeurs au clic. L'écran d'accueil `#step-1` contient aussi un bloc statique `#acme-brand` (logo `formation/identite/logo.png`, nom « ACME », message d'accueil), mis en forme par `css/acme.css` ; `#title` (logo HexGL) y est masqué. Aucun script n'intervient sur ce bloc. `#s-godmode` est masqué (`display:none`) dans `index.html`.
 3. Si `canvas.getContext("webgl")` échoue, `#start` affiche « WebGL is not supported! » et pointe vers `http://get.webgl.org/`. Sinon, clic sur `#start` → affiche `#step-2` (image d'aide `css/help-N.png`).
 4. Clic sur `#step-2` → `#step-3` (barre de progression) → `init(controlType, quality, hud, godmode)` crée `bkcore.hexgl.HexGL` (exposé en `window.hexGL`) et appelle `hexGL.load(...)`.
 5. `HexGL.load` → `track.load(opts, quality)` (`tracks/Cityscape.js`) : un `bkcore.threejs.Loader` charge textures, géométries, « analysers » (images de collision/hauteur lues pixel par pixel) et sons, avec un jeu de ressources selon `quality` (< 2 : textures LOW ; sinon version complète).
@@ -51,7 +51,7 @@ Document descriptif, établi par lecture du code et par exécution du jeu en nav
 - `geometries/` : `bonus/`, `booster/`, `ships/feisar/`, `tracks/cityscape/` et `tracks/edge/` (modèles JSON Three.js).
 - `textures/` : `bonus`, `hud`, `particles`, `ships/feisar`, `skybox/dawnclouds`, `tracks/cityscape`, `checker.png`. Un dossier `textures.full/` existe en parallèle (le README indique de permuter les deux dossiers pour les textures pleine taille).
 - `audio/` : `bg`, `wind`, `boost`, `crash`, `destroyed` (`.ogg`) + `LICENSE`.
-- `css/` : `multi.css`, `fonts.css`, `touchcontroller.css`, police Bebas Neue (4 formats), images d'aide et de menu.
+- `css/` : `multi.css`, `fonts.css`, `acme.css` (surcharges de l'écran d'accueil pour l'événement ACME, chargé après `multi.css`), `touchcontroller.css`, police Bebas Neue (4 formats), images d'aide et de menu.
 - `replays/cityscape-casual/bkcore.replay.json`.
 - Hors jeu : `formation/` (`identite/` charte + logo ACME, `tickets/company-event.md`, `tests/`), `package.zip`, icônes `icon_*.png`, `favicon.png`.
 
