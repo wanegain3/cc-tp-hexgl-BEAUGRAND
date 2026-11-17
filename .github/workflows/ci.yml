@@ -1,0 +1,14 @@
+name: Tests QUnit
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  tests:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Lancer les tests QUnit
+        run: .\HexGL\formation\tests\ci-chrome.bat
+  
